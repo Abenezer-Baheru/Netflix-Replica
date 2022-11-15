@@ -18,7 +18,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
     fetchData();
   }, [fetchUrl]);
   const opts = {
-    heighr: "390",
+    hight: "390",
     width: "100%",
     playerVars: {
       autoplay: 1,
@@ -28,7 +28,10 @@ function Row({ title, fetchUrl, isLargeRow }) {
     if(trailerUrl){
       setTrailerUrl('')
     }else {
-      movieTrailer(movie?.title || "")
+      movieTrailer(movie?.title ||
+        movie?.name ||
+        movie?.original_name ||
+        movie?.original_title || "")
       .then((url) => {
         const urlParams = new URLSearchParams(new URL(url).search)
         setTrailerUrl(urlParams.get('v'))
